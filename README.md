@@ -6,10 +6,9 @@ This Terraform module deployes [Nerdio Manager for Enterprise][nme] with the har
 
 1. Run this Terraform module.
 2. Grant admin consent for the API permissions requested by Nerdio.
-3. Grant users access to the Nerdio application through Azure AD groups.
-4. Download and [deploy the Nerdio application zip file][zipdeploy]. This can be requested from Nerdio support.
-5. Log-in to Nerdio as a Nerdio Admin and [complete the setup process as per normal][setup].
-6. [Deploy Nerdio licensing from Azure Marketplace][license].
+3. Download and [deploy the Nerdio application zip file][zipdeploy]. This can be requested from Nerdio support.
+4. Log-in to Nerdio as a Nerdio Admin and [complete the setup process as per normal][setup].
+5. [Deploy Nerdio licensing from Azure Marketplace][license].
 
 ## Deployment permissions
 

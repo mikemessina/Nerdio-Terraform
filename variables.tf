@@ -43,6 +43,36 @@ variable "nerdio_tag_prefix" {
   default     = "NMW"
 }
 
+variable "desktop_admins" {
+  description = "(Optional) Map of identities to be added to the Desktop Admin role."
+  type        = map(string)
+  default     = {}
+}
+
+variable "desktop_users" {
+  description = "(Optional) Map of identities to be added the Desktop User role."
+  type        = map(string)
+  default     = {}
+}
+
+variable "helpdesk_users" {
+  description = "(Optional) Map of identities to be added the Help Desk role."
+  type        = map(string)
+  default     = {}
+}
+
+variable "reviewers" {
+  description = "(Optional) Map of identities to be added the Reviewers role."
+  type        = map(string)
+  default     = {}
+}
+
+variable "nerdio_admins" {
+  description = "(Optional) Map of identities to be added the Nerdio Admin role."
+  type        = map(string)
+  default     = {}
+}
+
 variable "tags" {
   description = "(Optional) Tags to be applied to all resources."
   type        = map(string)
