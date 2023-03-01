@@ -6,7 +6,7 @@ resource "azurerm_key_vault" "nerdio" {
   sku_name                 = "standard"
   purge_protection_enabled = false
 
-  enable_rbac_authorization = true
+  enable_rbac_authorization = false # Nerdio requires Access Policies
   tenant_id                 = data.azurerm_client_config.current.tenant_id
 
   network_acls {
@@ -19,18 +19,29 @@ resource "azurerm_key_vault" "nerdio" {
 }
 
 #
-# Permissions
+# Access Policies
 #
-resource "azurerm_role_assignment" "nerdio_webapp_secrets_officer" {
-  scope                = azurerm_key_vault.nerdio.id
-  role_definition_name = "Key Vault Secrets Officer"
-  principal_id         = azurerm_windows_web_app.nerdio.identity[0].principal_id
+resource "azurerm_key_vault_access_policy" "nerdio_webapp" {
+  key_vault_id = azurerm_key_vault.example.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = azurerm_windows_web_app.nerdio.identity[0].principal_id
+
+  secret_permissions = [
+    "Get",
+    "List",
+    "Set",
+    "Delete",
+  ]
 }
 
-resource "azurerm_role_assignment" "nerdio_app_secrets_user" {
-  scope                = azurerm_key_vault.nerdio.id
-  role_definition_name = "Key Vault Secrets User"
-  principal_id         = azuread_service_principal.nerdio_manager.object_id
+resource "azurerm_key_vault_access_policy" "nerdio_service_principal" {
+  key_vault_id = azurerm_key_vault.example.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = azuread_service_principal.nerdio_manager.object_id
+
+  secret_permissions = [
+    "Get",
+  ]
 }
 
 #
