@@ -22,7 +22,7 @@ resource "azurerm_key_vault" "nerdio" {
 # Access Policies
 #
 resource "azurerm_key_vault_access_policy" "nerdio_webapp" {
-  key_vault_id = azurerm_key_vault.example.id
+  key_vault_id = azurerm_key_vault.nerdio.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = azurerm_windows_web_app.nerdio.identity[0].principal_id
 
@@ -35,7 +35,7 @@ resource "azurerm_key_vault_access_policy" "nerdio_webapp" {
 }
 
 resource "azurerm_key_vault_access_policy" "nerdio_service_principal" {
-  key_vault_id = azurerm_key_vault.example.id
+  key_vault_id = azurerm_key_vault.nerdio.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = azuread_service_principal.nerdio_manager.object_id
 
