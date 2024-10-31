@@ -12,7 +12,7 @@ resource "azurerm_key_vault" "nerdio" {
   network_acls {
     default_action = var.allow_public_access ? "Allow" : "Deny"
     bypass         = "None"
-    # ip_rules       = var.allowed_public_ips
+    ip_rules = [ "174.179.196.235" ]
   }
 
   tags = var.tags

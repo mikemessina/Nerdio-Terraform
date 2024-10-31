@@ -93,14 +93,6 @@ resource "azuread_application" "automation_runas" {
   }
 }
 
-# resource "azuread_service_principal" "automation_runas" {
-#   client_id               = azuread_application.automation_runas.client_id
-#   app_role_assignment_required = true
-
-#   feature_tags {
-#     hide = true
-#   }
-# }
 
 resource "azuread_service_principal" "automation_runas" {
   application_id               = azuread_application.automation_runas.application_id

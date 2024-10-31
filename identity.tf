@@ -142,7 +142,6 @@ resource "azuread_application" "nerdio_manager" {
 
 resource "azuread_service_principal" "msgraph" {
   application_id = data.azuread_application_published_app_ids.well_known.result.MicrosoftGraph
-  # client_id    = data.azuread_application_published_app_ids.well_known.result.MicrosoftGraph
   use_existing = true
 }
 
@@ -154,7 +153,6 @@ resource "azuread_service_principal" "msgraph" {
 
 resource "azuread_service_principal" "nerdio_manager" {
   application_id               = azuread_application.nerdio_manager.application_id
-  # client_id                    = azuread_application.nerdio_manager.client_id
   app_role_assignment_required = false
   owners                       = [data.azuread_client_config.current.object_id]
 
@@ -164,20 +162,9 @@ resource "azuread_service_principal" "nerdio_manager" {
   }
 }
 
-# resource "azuread_service_principal" "nerdio_manager" {
-#   application_id               = azuread_application.nerdio_manager.application_id
-#   app_role_assignment_required = true
-
-#   feature_tags {
-#     enterprise = true
-#     hide       = true
-#   }
-# }
-
 # Generate a password, and set to auto-rotate
 resource "azuread_service_principal_password" "nerdio_manager" {
   service_principal_id = azuread_service_principal.nerdio_manager.object_id
-  # end_date_relative    = "${time_rotating.nerdio_service_principal.rotation_days * 24}h"
 
   rotate_when_changed = {
     rotation = time_rotating.nerdio_service_principal.id

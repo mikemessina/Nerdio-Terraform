@@ -15,7 +15,6 @@ resource "azurerm_subnet" "private_endpoints" {
   address_prefixes     = [cidrsubnet(azurerm_virtual_network.nerdio.address_space[0], 1, 0)]
 
   private_link_service_network_policies_enabled = false
-  # private_endpoint_network_policies = enabled
 }
 
 resource "azurerm_subnet" "appsvc" {
