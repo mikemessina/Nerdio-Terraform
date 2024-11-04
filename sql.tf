@@ -10,7 +10,7 @@ resource "azurerm_mssql_database" "nerdio" {
 }
 
 resource "azurerm_mssql_server" "nerdio" {
-  name                = "${lower(var.base_name)}-sql"
+  name                = "${lower(var.base_name)}-sql-01"
   location            = azurerm_resource_group.nerdio.location
   resource_group_name = azurerm_resource_group.nerdio.name
 
@@ -39,7 +39,7 @@ resource "azurerm_mssql_server" "nerdio" {
 # Azure AD Admin Group
 #
 resource "azuread_group" "sql_admins" {
-  display_name            = "Azure SQL Server Administrators - ${lower(var.base_name)}-sql"
+  display_name            = "Azure SQL Server Administrators - ${lower(var.base_name)}-sql-01"
   prevent_duplicate_names = true
   security_enabled        = true
 }

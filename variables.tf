@@ -22,7 +22,7 @@ variable "allow_public_access" {
 variable "webapp_sku" {
   description = "(Optional) SKU of the SQL database to deploy. Defaults to `B3`."
   type        = string
-  default     = "B3"
+  default     = "S3"
 }
 
 variable "sql_sku" {

@@ -1,5 +1,5 @@
 resource "azurerm_virtual_network" "nerdio" {
-  name                = "${lower(var.base_name)}-vnet"
+  name                = "${lower(var.base_name)}-vnet-01"
   location            = azurerm_resource_group.nerdio.location
   resource_group_name = azurerm_resource_group.nerdio.name
 

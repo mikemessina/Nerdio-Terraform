@@ -24,7 +24,8 @@ resource "azurerm_windows_web_app" "nerdio" {
   app_settings = {
     "ApplicationInsights:ConnectionString"   = azurerm_application_insights.nerdio.connection_string
     "ApplicationInsights:InstrumentationKey" = azurerm_application_insights.nerdio.instrumentation_key
-    "AzureAd:Instance"                       = "https://login.microsoftonline.com/"
+    # "AzureAd:Instance"                       = "https://login.microsoftonline.com/"
+    "AzureAd:Instance"                       = "https://login.microsoftonline.us/"
     "AzureAd:ClientId"                       = azuread_application.nerdio_manager.application_id
     "AzureAd:TenantId"                       = data.azurerm_subscription.current.tenant_id
     "Billing:Mode"                           = "MAU"
